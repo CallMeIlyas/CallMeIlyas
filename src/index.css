@@ -1,0 +1,128 @@
+/* 🌐 Import font dulu sebelum digunakan */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Neue+Haas+Grotesk:wght@600;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🎨 Design System (Base Layer) */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 14.5%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 14.5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 14.5%;
+
+    --primary: 0 0% 20.5%;
+    --primary-foreground: 0 0% 98.5%;
+
+    --secondary: 0 0% 97%;
+    --secondary-foreground: 0 0% 20.5%;
+
+    --muted: 0 0% 97%;
+    --muted-foreground: 0 0% 55.6%;
+
+    --accent: 0 0% 97%;
+    --accent-foreground: 0 0% 20.5%;
+    --destructive: 0 84% 57.7%;
+    --destructive-foreground: 0 0% 98.5%;
+
+    --border: 0 0% 92.2%;
+    --input: 0 0% 92.2%;
+    --ring: 0 0% 70.8%;
+
+    --radius: 0.625rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  /* 🌙 Dark theme */
+  .dark {
+    --background: 0 0% 4.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 11.2%;
+    --secondary: 0 0% 17.5%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 17.5%;
+    --muted-foreground: 0 0% 65.1%;
+    --accent: 0 0% 17.5%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 63% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 17.5%;
+    --input: 0 0% 17.5%;
+    --ring: 0 0% 83.9%;
+  }
+
+  /* Global resets & typography */
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* 🎯 Typography classes */
+  .font-display {
+    font-family: 'Playfair';
+  }
+
+  .font-sans {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .font-dm-serif {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .font-haas {
+    font-family: "Neue Haas Grotesk", sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  /* ✨ Custom font class */
+  .font-karlo {
+    font-family: "Karlo", sans-serif;
+  }
+}
+
+/* 🧩 Custom Font Declaration (di luar layer) */
+@font-face {
+  font-family: "Karlo";
+  src: url("/fonts/Karlo-Video-Archives-Font.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-karlo-light {
+  font-family: "Karlo", sans-serif;
+  font-weight: 50;
+  letter-spacing: 0.04em; /* sedikit renggang */
+}
