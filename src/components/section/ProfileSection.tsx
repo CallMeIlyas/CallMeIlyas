@@ -14,7 +14,7 @@ const ProfileSection = () => {
           
           <div className="flex justify-end">
             <img
-              src="/images/profile-photo.jpg"
+              src="images/profile-photo.jpg"
               alt="Muhammad Ilyas Abdul Ghoni"
               className="w-[280px] h-[280px] object-cover rounded-3xl shadow-xl border border-[#d4d3d2]"
             />
@@ -64,7 +64,7 @@ const ProfileSection = () => {
               </a>
       
               <a
-                href="https://discord.com/users/877090899518189578"
+                href="https://discord.com/users/1491647158137655307"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 border border-[#343535] rounded-lg hover:bg-[#343535] hover:text-white transition-all duration-300 flex items-center justify-center"
@@ -80,7 +80,7 @@ const ProfileSection = () => {
       <div className="flex md:hidden flex-col items-center justify-center px-6 py-20 -mt-[8vh] gap-8">
         {/* Foto */}
         <img
-          src="/images/profile-photo.jpg"
+          src="images/profile-photo.jpg"
           alt="Muhammad Ilyas Abdul Ghoni"
           className="w-[200px] h-[200px] object-cover rounded-3xl shadow-xl border border-[#d4d3d2]"
         />
@@ -130,7 +130,7 @@ const ProfileSection = () => {
             </a>
         
             <a
-              href="https://discord.com/users/877090899518189578"
+              href="https://discord.com/users/1491647158137655307"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 border border-[#343535] rounded-lg hover:bg-[#343535] hover:text-white transition-all duration-300"

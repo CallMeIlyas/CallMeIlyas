@@ -39,8 +39,8 @@ const Index = () => {
           id="about"
           useDotWaves={true}
           formulas={formulas}
-          leftImage="/images/left-img.jpg"
-          rightImage="/images/right-img.jpg"
+          leftImage="images/left-img.jpg"
+          rightImage="images/right-img.jpg"
           bgColor="bg-[#f7f6f4]"
           isFullScreen={true}
         />

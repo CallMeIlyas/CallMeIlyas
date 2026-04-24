@@ -124,5 +124,6 @@
 .font-karlo-light {
   font-family: "Karlo", sans-serif;
   font-weight: 50;
-  letter-spacing: 0.04em; /* sedikit renggang */
+  letter-spacing: 0.04em;
+  /* sedikit renggang */
 }
