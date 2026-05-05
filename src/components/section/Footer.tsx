@@ -95,7 +95,7 @@ const UpCard = () => {
               <h3 className="text-lg md:text-xl font-serif text-white/90">Connect</h3>
               <nav className="flex flex-col gap-3 text-[13px] md:text-[14px] font-medium tracking-wide uppercase mt-6">
                 {[
-                  { label: "Email",    href: "mailto:muhmmadilyasabdulghoni@gmail.com" },
+                  { label: "Email",    href: `mailto:${import.meta.env.VITE_CONTACT_EMAIL}` },
                   { label: "LinkedIn", href: "https://www.linkedin.com/in/muhammad-ilyas-abdul-ghoni-76a584368" },
                   { label: "Discord",  href: "https://discord.com/users/877090899518189578" },
                 ].map(({ label, href }) => (

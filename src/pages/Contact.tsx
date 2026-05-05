@@ -5,24 +5,45 @@ import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
 import { FiMail, FiGlobe, FiClock, FiPhone } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
+import { useState } from "react";
+import { toast } from "sonner";
 
 const contactItems = [
-  { icon: FiMail,   title: "Email",         info: "muhmmadilyasabdulghoni@gmail.com" },
-  { icon: FiGlobe,  title: "Location",      info: "Available Worldwide" },
-  { icon: FiClock,  title: "Working Hours", info: "Mon-Fri, 9AM - 6PM" },
-  { icon: FaWhatsapp,  title: "Whatsapp",         info: "+62 123 4567 890" },
+  { icon: FiMail, title: "Email", info: import.meta.env.VITE_CONTACT_EMAIL },
+  { icon: FiGlobe, title: "Location", info: "Available Worldwide" },
+  { icon: FiClock, title: "Working Hours", info: "Mon-Fri, 9AM - 6PM" },
+  { icon: FaWhatsapp, title: "Whatsapp", info: import.meta.env.VITE_CONTACT_PHONE },
 ];
 
 const Contact = () => {
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const name    = formData.get('name');
-    const email   = formData.get('email');
-    const company = formData.get('company');
-    const message = formData.get('message');
-    const emailBody = `Name: ${name}\nEmail: ${email}\nCompany: ${company}\nMessage: ${message}`;
-    window.location.href = `mailto:muhmmadilyasabdulghoni@gmail.com?subject=Contact Form Message from ${name}&body=${encodeURIComponent(emailBody)}`;
+    setIsSubmitting(true);
+    
+    const formData = new FormData(e.currentTarget);
+    formData.append("access_key", import.meta.env.VITE_WEB3FORMS_KEY);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success("Message sent successfully!");
+        (e.target as HTMLFormElement).reset();
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      toast.error("Failed to send message. Please check your connection.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -62,15 +83,20 @@ const Contact = () => {
               <Label htmlFor="message">Message</Label>
               <Textarea id="message" name="message" placeholder="Tell us about your project..." className="min-h-[200px] resize-none" required />
             </div>
-            <Button type="submit" className="w-full h-12 text-base font-medium uppercase tracking-wide" size="lg">
-              Send Message
+            <Button 
+              type="submit" 
+              className="w-full h-12 text-base font-medium uppercase tracking-wide" 
+              size="lg"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Sending..." : "Send Message"}
             </Button>
           </form>
 
           <div className="mt-12 text-center">
             <p className="text-sm text-muted-foreground mb-4">Or reach us directly at:</p>
-            <a href="mailto:muhmmadilyasabdulghoni@gmail.com" className="text-primary hover:underline font-medium break-all">
-              muhmmadilyasabdulghoni@gmail.com
+            <a href={`mailto:${import.meta.env.VITE_CONTACT_EMAIL}`} className="text-primary hover:underline font-medium break-all">
+              {import.meta.env.VITE_CONTACT_EMAIL}
             </a>
           </div>
         </div>
@@ -125,10 +151,10 @@ const Contact = () => {
           <h3 className="text-2xl md:text-4xl font-serif mb-8 text-center">Frequently Asked Questions</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {[
-              { q: "How quickly do you respond?",          a: "We typically respond within 24-48 hours during business days." },
+              { q: "How quickly do you respond?", a: "We typically respond within 24-48 hours during business days." },
               { q: "Do you work with international clients?", a: "Yes! We work with clients from all around the world remotely." },
-              { q: "What services do you offer?",          a: "We offer web development, software development, and consulting services." },
-              { q: "What's your pricing model?",           a: "We offer both project-based and hourly rates. Contact us for a quote." },
+              { q: "What services do you offer?", a: "We offer web development, software development, and consulting services." },
+              { q: "What's your pricing model?", a: "We offer both project-based and hourly rates. Contact us for a quote." },
             ].map(({ q, a }) => (
               <div key={q} className="bg-secondary/50 p-5 md:p-6 rounded-lg">
                 <h4 className="text-base md:text-xl font-semibold mb-2">{q}</h4>
@@ -143,10 +169,10 @@ const Contact = () => {
           <h3 className="text-2xl md:text-4xl font-serif mb-8 text-center">Our Services</h3>
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {[
-              { title: "Full Stack Web Dev",    desc: "Modern, responsive websites built with the latest technologies" },
-              { title: "Software Engineering",  desc: "Robust and scalable software solutions for your business" },
-              { title: "Mobile Development",    desc: "Native and cross-platform mobile applications" },
-              { title: "Maintenance",           desc: "Ongoing support and maintenance for your projects" },
+              { title: "Full Stack Web Dev", desc: "Modern, responsive websites built with the latest technologies" },
+              { title: "Software Engineering", desc: "Robust and scalable software solutions for your business" },
+              { title: "Mobile Development", desc: "Native and cross-platform mobile applications" },
+              { title: "Maintenance", desc: "Ongoing support and maintenance for your projects" },
             ].map(({ title, desc }) => (
               <div key={title} className="text-center p-4 md:p-6 bg-primary/5 rounded-lg">
                 <h4 className="text-sm md:text-xl font-semibold mb-2">{title}</h4>

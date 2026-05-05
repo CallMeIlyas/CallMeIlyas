@@ -20,6 +20,9 @@ const ScrollManager = ({ children }: { children: React.ReactNode }) => {
   const { wrapperRef, contentRef } = useScrollSmoother();
 
   useEffect(() => {
+    // Scroll to top on route change
+    window.scrollTo(0, 0);
+
     const timer = setTimeout(() => {
       refreshSmoothScroll();
     }, 300);
@@ -111,7 +114,7 @@ const App = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <BrowserRouter basename="/CallMeIlyas">
+              <BrowserRouter>
                 <Navbar sections={["Home", "Profile", "Project", "Contact"]} />
                 <ScrollManager>
                   <Routes>
